@@ -3,583 +3,975 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ôn tập Khoa học Máy tính - CSI106</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Ôn Tập Khoa Học Máy Tính</title>
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #50e3c2;
-            --success-color: #7ed321;
-            --danger-color: #d0021b;
-            --light-color: #f9f9f9;
-            --dark-color: #4a4a4a;
-            --background-color: #ffffff;
-            --font-color: #333;
-            --border-color: #e0e0e0;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
         }
+        
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.7;
-            background: linear-gradient(to right top, #f5f7fa, #ffffff);
-            color: var(--font-color);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
         }
+        
         .container {
-            background-color: var(--background-color);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
+        
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        
         h1 {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: 2rem;
-            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
         }
-        .tabs {
-            display: flex;
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .tab-button {
-            padding: 12px 25px;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
+        
+        .subtitle {
             font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--dark-color);
-            transition: all 0.3s ease;
-            margin-bottom: -1px;
+            opacity: 0.9;
         }
-        .tab-button.active, .tab-button:hover {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
-        }
-        .btn {
-            padding: 10px 20px;
-            border: none;
+        
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             background-color: var(--primary-color);
             color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
             cursor: pointer;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        
+        .language-toggle:hover {
+            background-color: #2980b9;
         }
-        .btn-secondary { background-color: #6c757d; }
-        .btn-danger { background-color: var(--danger-color); }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        #theory-summary {
-            background-color: #fdfdff;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            max-height: 500px;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
+        
+        .tabs {
+            display: flex;
+            background-color: var(--dark-color);
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
         }
-        #theory-summary p { margin: 0 0 12px 0; border-left: 4px solid var(--secondary-color); padding-left: 15px; }
-        #theory-summary span { font-weight: 600; color: var(--primary-color); }
-
-        #quiz-setup { text-align: center; padding: 30px 0; }
-        #quiz-setup h3 { margin-top: 0; margin-bottom: 20px; }
-        #num-questions-input {
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            width: 80px;
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
             text-align: center;
-            margin-right: 10px;
-        }
-
-        #quiz-container { text-align: center; }
-        #progress-bar-container {
-            width: 100%;
-            background-color: var(--border-color);
-            border-radius: var(--border-radius);
-            margin-bottom: 10px;
-        }
-        #progress-bar {
-            width: 0%;
-            height: 10px;
-            background-color: var(--secondary-color);
-            border-radius: var(--border-radius);
-            transition: width 0.5s ease;
-        }
-        #question-text { font-size: 1.5rem; margin-bottom: 25px; font-weight: 500; }
-        #answers-container { display: flex; flex-direction: column; gap: 12px; }
-        .answer-btn {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            text-align: left;
-            padding: 15px;
-            background-color: var(--background-color);
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius);
+            background-color: var(--dark-color);
+            color: white;
+            border: none;
             cursor: pointer;
             font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .answer-btn:hover:not(:disabled) {
-            border-color: var(--primary-color);
-            transform: scale(1.02);
-        }
-        .answer-btn:disabled { cursor: not-allowed; opacity: 0.8; }
-        .answer-btn.correct, .answer-btn.incorrect { transform: scale(1); }
-        .answer-btn.correct { border-color: var(--success-color); background-color: #f0fff4; }
-        .answer-btn.incorrect { border-color: var(--danger-color); background-color: #fff5f5; }
-        .answer-btn .icon {
-            font-size: 1.5rem;
-            margin-left: auto;
-            font-style: normal;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
         
-        #quiz-footer {
-            margin-top: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #memory-tip {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            border-radius: var(--border-radius);
-            color: #856404;
-            text-align: left;
+        .tab:hover {
+            background-color: #3a506b;
         }
         
-        #results-container h2 { text-align: center; }
-        #score { font-size: 2.2rem; font-weight: bold; color: var(--primary-color); }
-        #results-list { list-style-type: none; padding: 0; }
-        #results-list li {
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+        .tab.active {
+            background-color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 500px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .theory-content {
+            line-height: 1.8;
+        }
+        
+        .theory-content h2 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 10px;
+        }
+        
+        .theory-content p {
             margin-bottom: 15px;
         }
-        .result-correct { border-left: 5px solid var(--success-color); background-color: #f7fff9; }
-        .result-incorrect { border-left: 5px solid var(--danger-color); background-color: #fffafa; }
-        .result-question { font-weight: 600; }
-        .result-answer { margin-top: 8px; font-size: 0.95rem; }
-        .result-tip { margin-top: 10px; font-size: 0.9rem; font-style: italic; color: #555; }
+        
+        .quiz-setup {
+            background-color: var(--light-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-setup label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .quiz-setup input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-warning {
+            background-color: var(--warning-color);
+        }
+        
+        .btn-warning:hover {
+            background-color: #d35400;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .options-container {
+            margin-bottom: 20px;
+        }
+        
+        .option {
+            display: block;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            background-color: var(--light-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #d6dbdf;
+        }
+        
+        .option.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .option.correct {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .option.incorrect {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .feedback {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background-color: rgba(46, 204, 113, 0.2);
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .feedback.incorrect {
+            background-color: rgba(231, 76, 60, 0.2);
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        .memory-tip {
+            background-color: rgba(243, 156, 18, 0.2);
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .result-container {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .result-details {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .result-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        
+        .result-item.correct {
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        .result-item.incorrect {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+        
+        .result-question {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .result-answer {
+            margin-bottom: 5px;
+        }
+        
+        .result-explanation {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: var(--light-color);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .language-toggle {
+                position: static;
+                margin-top: 10px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header>
-        <h1>Ôn tập CSI106</h1>
-        <button id="lang-toggle-btn" class="btn btn-secondary">Translate to English</button>
-    </header>
-
-    <div class="tabs">
-        <button id="theory-tab-btn" class="tab-button active" onclick="switchTab('theory')">Lý Thuyết</button>
-        <button id="quiz-tab-btn" class="tab-button" onclick="switchTab('quiz')">Làm Quiz</button>
-    </div>
-
-    <div id="theory-content" class="tab-content active">
-        <h2 id="theory-title">Tóm Tắt Lý Thuyết Cốt Lõi</h2>
-        <div id="theory-summary"></div>
-    </div>
-
-    <div id="quiz-content" class="tab-content">
-        <div id="quiz-setup">
-            <h3 id="quiz-setup-title">Nhập số câu hỏi bạn muốn làm:</h3>
-            <input type="number" id="num-questions-input" min="1" max="182" value="10">
-            <button id="start-quiz-btn" class="btn" onclick="startQuiz()">Bắt đầu</button>
+    <div class="container">
+        <header>
+            <h1>Ôn Tập Khoa Học Máy Tính</h1>
+            <p class="subtitle">Hệ thống câu hỏi trắc nghiệm toàn diện</p>
+            <button class="language-toggle" id="translateBtn">Translate to English</button>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab active" data-tab="theory">Lý Thuyết</button>
+            <button class="tab" data-tab="quiz">Làm Bài Tập</button>
         </div>
-
-        <div id="quiz-container" style="display: none;">
-            <div id="progress-bar-container"><div id="progress-bar"></div></div>
-            <p id="progress-text"></p>
-            <div id="question-text"></div>
-            <div id="answers-container"></div>
-            <div id="memory-tip" style="display: none;"></div>
-            <div id="quiz-footer">
-                <button id="submit-btn" class="btn btn-danger" onclick="submitQuiz()">Nộp bài</button>
-                <button id="next-btn" class="btn" onclick="nextQuestion()" style="display: none;">Câu Tiếp Theo</button>
+        
+        <div class="tab-content active" id="theory">
+            <div class="theory-content">
+                <h2>Ngôn Ngữ Máy Tính</h2>
+                <p>Một giải pháp từng bước cho một vấn đề được gọi là <strong>thuật toán</strong>. Đây là một chuỗi các bước rõ ràng, xác định để giải quyết một vấn đề hoặc thực hiện một nhiệm vụ cụ thể.</p>
+                
+                <h2>Mô Hình Von Neumann</h2>
+                <p>Mô hình Von Neumann là cơ sở cho các máy tính ngày nay. Được đề xuất bởi John von Neumann vào năm 1945, mô hình này mô tả kiến trúc của một máy tính điện tử với các thành phần chính:</p>
+                <ul>
+                    <li><strong>Bộ xử lý trung tâm (CPU):</strong> Thực hiện các phép tính và điều khiển hoạt động của máy tính</li>
+                    <li><strong>Bộ nhớ:</strong> Lưu trữ cả chương trình và dữ liệu</li>
+                    <li><strong>Thiết bị đầu vào/đầu ra:</strong> Cho phép tương tác với môi trường bên ngoài</li>
+                </ul>
+                <p>Một đặc điểm quan trọng của mô hình này là khái niệm "chương trình được lưu trữ" - cả hướng dẫn và dữ liệu được lưu trữ trong cùng một bộ nhớ, cho phép máy tính thực hiện nhiều loại nhiệm vụ khác nhau mà không cần thay đổi phần cứng.</p>
+                
+                <h2>Các Thành Phần Cơ Bản Của Máy Tính</h2>
+                <p>Máy tính hiện đại bao gồm các thành phần chính:</p>
+                <ol>
+                    <li><strong>Phần cứng:</strong> Các thành phần vật lý của máy tính</li>
+                    <li><strong>Phần mềm:</strong> Các chương trình hướng dẫn phần cứng thực hiện nhiệm vụ</li>
+                    <li><strong>Dữ liệu:</strong> Thông tin thô mà máy tính xử lý</li>
+                    <li><strong>Người dùng:</strong> Những người tương tác với máy tính</li>
+                </ol>
+                
+                <h2>Biểu Diễn Dữ Liệu</h2>
+                <p>Máy tính sử dụng hệ nhị phân (cơ số 2) để biểu diễn tất cả dữ liệu. Mỗi chữ số nhị phân (0 hoặc 1) được gọi là một bit. Các nhóm 8 bit tạo thành một byte, đơn vị cơ bản của bộ nhớ máy tính.</p>
+                
+                <h2>Phát Triển Phần Mềm</h2>
+                <p>Quá trình phát triển phần mềm bao gồm các giai đoạn:</p>
+                <ol>
+                    <li>Phân tích yêu cầu</li>
+                    <li>Thiết kế hệ thống</li>
+                    <li>Triển khai (lập trình)</li>
+                    <li>Kiểm thử</li>
+                    <li>Bảo trì</li>
+                </ol>
             </div>
         </div>
-
-        <div id="results-container" style="display: none;">
-            <h2 id="results-title">Kết quả</h2>
-            <p id="score" style="text-align: center;"></p>
-            <ul id="results-list"></ul>
-            <div style="text-align: center; margin-top: 20px;">
-                <button id="restart-btn" class="btn" onclick="restartQuiz()">Làm lại</button>
+        
+        <div class="tab-content" id="quiz">
+            <div class="quiz-setup" id="quizSetup">
+                <h2>Thiết Lập Bài Kiểm Tra</h2>
+                <label for="questionCount">Số câu hỏi bạn muốn làm:</label>
+                <input type="number" id="questionCount" min="1" max="182" value="10">
+                <button class="btn" id="startQuiz">Bắt Đầu Làm Bài</button>
+            </div>
+            
+            <div id="quizArea" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress" id="quizProgress"></div>
+                </div>
+                
+                <div class="question-container">
+                    <div class="question-number" id="questionNumber">Câu hỏi 1/10</div>
+                    <div class="question-text" id="questionText"></div>
+                    
+                    <div class="options-container" id="optionsContainer"></div>
+                    
+                    <div class="feedback" id="feedback"></div>
+                    
+                    <div class="memory-tip" id="memoryTip"></div>
+                    
+                    <div class="navigation">
+                        <button class="btn btn-warning" id="prevQuestion" disabled>Câu Trước</button>
+                        <button class="btn btn-success" id="nextQuestion">Câu Tiếp Theo</button>
+                        <button class="btn btn-danger" id="submitQuiz">Nộp Bài</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="resultArea" style="display: none;">
+                <div class="result-container">
+                    <h2>Kết Quả Bài Làm</h2>
+                    <div class="score" id="finalScore">0/0</div>
+                    
+                    <div class="result-details" id="resultDetails"></div>
+                    
+                    <button class="btn" id="restartQuiz">Làm Bài Khác</button>
+                </div>
             </div>
         </div>
+        
+        <footer>
+            <p>Hệ thống ôn tập Khoa học Máy tính &copy; 2023</p>
+        </footer>
     </div>
-</div>
 
-<script>
-// --- START OF QUESTION BANK (FULL 182 QUESTIONS) ---
-const mcqBank = [
-    {"id":1,"question_vi":"Một giải pháp từng bước cho một vấn đề được gọi là _______.","question_en":"A step-by-step solution to a problem is called _______.","answers_vi":[{"text":"phần cứng","correct":false},{"text":"một hệ điều hành","correct":false},{"text":"một ngôn ngữ máy tính","correct":false},{"text":"một thuật toán","correct":true}],"answers_en":[{"text":"hardware","correct":false},{"text":"an operating system","correct":false},{"text":"a computer language","correct":false},{"text":"an algorithm","correct":true}],"tip_vi":"Thuật toán (Algorithm) là một chuỗi các hướng dẫn hoặc quy tắc được xác định rõ ràng để giải quyết một vấn đề cụ thể.","tip_en":"An Algorithm is a sequence of well-defined instructions or rules to solve a specific problem."},
-    {"id":2,"question_vi":"Mô hình _______ là cơ sở cho các máy tính ngày nay.","question_en":"The _______ model is the basis for today's computers.","answers_vi":[{"text":"Leibnitz","correct":false},{"text":"von Neumann","correct":true},{"text":"Pascal","correct":false},{"text":"Charles Babbage","correct":false}],"answers_en":[{"text":"Leibnitz","correct":false},{"text":"von Neumann","correct":true},{"text":"Pascal","correct":false},{"text":"Charles Babbage","correct":false}],"tip_vi":"Kiến trúc von Neumann mô tả một máy tính có thể lưu trữ chương trình và dữ liệu trong cùng một bộ nhớ, đây là nền tảng của hầu hết các máy tính hiện đại.","tip_en":"The von Neumann architecture describes a computer that can store both programs and data in the same memory, which is the foundation of most modern computers."},
-    {"id":3,"question_vi":"Máy tính điện tử chuyên dụng đầu tiên được gọi là ___.","question_en":"The first electronic special-purpose computer was called ___.","answers_vi":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC (Atanasoff-Berry Computer)","correct":true},{"text":"ENIAC","correct":false}],"answers_en":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC (Atanasoff-Berry Computer)","correct":true},{"text":"ENIAC","correct":false}],"tip_vi":"Máy tính Atanasoff-Berry (ABC) được coi là máy tính điện tử kỹ thuật số tự động đầu tiên.","tip_en":"The Atanasoff-Berry Computer (ABC) is considered the first automatic electronic digital computer."},
-    {"id":4,"question_vi":"Một trong những máy tính đầu tiên dựa trên mô hình von Neumann được gọi là ___.","question_en":"One of the first computers based on the von Neumann model was called ___.","answers_vi":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC","correct":false},{"text":"EDVAC","correct":true}],"answers_en":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC","correct":false},{"text":"EDVAC","correct":true}],"tip_vi":"EDVAC (Electronic Discrete Variable Automatic Computer) là một trong những máy tính đầu tiên được thiết kế theo kiến trúc von Neumann.","tip_en":"EDVAC (Electronic Discrete Variable Automatic Computer) was one of the first computers designed according to the von Neumann architecture."},
-    {"id":5,"question_vi":"Máy tính đầu tiên sử dụng ý tưởng lưu trữ và lập trình được gọi là ___.","question_en":"The first computing machine to use the idea of storage and programming was called ___.","answers_vi":[{"text":"the Madeline","correct":false},{"text":"EDVAC","correct":false},{"text":"the Babbage machine","correct":false},{"text":"the Jacquard loom","correct":true}],"answers_en":[{"text":"the Madeline","correct":false},{"text":"EDVAC","correct":false},{"text":"the Babbage machine","correct":false},{"text":"the Jacquard loom","correct":true}],"tip_vi":"Máy dệt Jacquard sử dụng các thẻ đục lỗ để điều khiển các mẫu dệt, đây là một dạng lưu trữ chương trình sơ khai.","tip_en":"The Jacquard loom used punched cards to control weaving patterns, an early form of program storage."},
-    {"id":6,"question_vi":"Một máy tính thế kỷ 17 có thể thực hiện phép cộng và trừ là _______.","question_en":"A 17th-century computing machine that could perform addition and subtraction was the _______.","answers_vi":[{"text":"Pascaline","correct":true},{"text":"Jacquard loom","correct":false},{"text":"Analytical Engine","correct":false},{"text":"Babbage machine","correct":false}],"answers_en":[{"text":"Pascaline","correct":true},{"text":"Jacquard loom","correct":false},{"text":"Analytical Engine","correct":false},{"text":"Babbage machine","correct":false}],"tip_vi":"Pascaline, do Blaise Pascal phát minh, là một trong những máy tính cơ học đầu tiên.","tip_en":"The Pascaline, invented by Blaise Pascal, was one of the first mechanical calculators."},
-    {"id":7,"question_vi":"Ngôn ngữ ký hiệu được phát triển vào _______.","question_en":"Symbolic languages were developed in _______.","answers_vi":[{"text":"1962","correct":false},{"text":"1974","correct":false},{"text":"1980","correct":false},{"text":"1950","correct":true}],"answers_en":[{"text":"1962","correct":false},{"text":"1974","correct":false},{"text":"1980","correct":false},{"text":"1950","correct":true}],"tip_vi":"Thập niên 1950 chứng kiến sự ra đời của các hợp ngữ (assembly languages), là những ngôn ngữ ký hiệu đầu tiên.","tip_en":"The 1950s saw the development of assembly languages, which were the first symbolic languages."},
-    {"id":8,"question_vi":"Máy vi tính Apple Macintosh II được giới thiệu ra thị trường khi nào?","question_en":"When was Apple Macintosh II microcomputer introduced in the market?","answers_vi":[{"text":"1964","correct":false},{"text":"1970","correct":false},{"text":"1986","correct":false},{"text":"1987","correct":true}],"answers_en":[{"text":"1964","correct":false},{"text":"1970","correct":false},{"text":"1986","correct":false},{"text":"1987","correct":true}],"tip_vi":"Macintosh II, ra mắt năm 1987, là một cột mốc quan trọng của Apple với khả năng hiển thị màu.","tip_en":"The Macintosh II, released in 1987, was a significant milestone for Apple with its color display capabilities."},
-    {"id":9,"question_vi":"Tên gọi của máy tính ở quy mô phân tử là gì?","question_en":"What is the name given to the molecular-scale computer?","answers_vi":[{"text":"Supercomputer","correct":false},{"text":"Femtocomputer","correct":false},{"text":"Nanocomputer","correct":true},{"text":"Microcomputer","correct":false}],"answers_en":[{"text":"Supercomputer","correct":false},{"text":"Femtocomputer","correct":false},{"text":"Nanocomputer","correct":true},{"text":"Microcomputer","correct":false}],"tip_vi":"Công nghệ nano (Nanotechnology) liên quan đến việc chế tạo các thiết bị ở quy mô nano mét, bao gồm cả máy tính.","tip_en":"Nanotechnology deals with building devices at the nanometer scale, including computers."},
-    {"id":10,"question_vi":"Con người được gọi là Homosapiens. Thiết bị nào được gọi là Silico sapiens?","question_en":"Human beings are referred to as Homosapiens. Which device is called Silico sapiens?","answers_vi":[{"text":"Monitor","correct":false},{"text":"Hardware","correct":false},{"text":"Robot","correct":false},{"text":"Computer","correct":true}],"answers_en":[{"text":"Monitor","correct":false},{"text":"Hardware","correct":false},{"text":"Robot","correct":false},{"text":"Computer","correct":true}],"tip_vi":"'Silico sapiens' (sinh vật thông minh dựa trên silicon) là một thuật ngữ ẩn dụ cho máy tính, vì chip của chúng được làm từ silicon.","tip_en":"'Silico sapiens' (silicon-based intelligent being) is a metaphorical term for computers, as their chips are made from silicon."},
-    {"id":11,"question_vi":"Lĩnh vực nào sau đây hiện không phải là một chủ đề trong khoa học máy tính?","question_en":"Which of the following is not currently a topic in computer science?","answers_vi":[{"text":"Nhận dạng giọng nói","correct":false},{"text":"Trí tuệ nhân tạo","correct":false},{"text":"Nhiệt động lực học","correct":true},{"text":"Đa xử lý","correct":false}],"answers_en":[{"text":"Speech recognition","correct":false},{"text":"Artificial intelligence","correct":false},{"text":"Thermodynamics","correct":true},{"text":"Multiprocessing","correct":false}],"tip_vi":"Nhiệt động lực học là một nhánh của vật lý, trong khi các lựa chọn khác là các lĩnh vực con của khoa học máy tính.","tip_en":"Thermodynamics is a branch of physics, while the other options are subfields of computer science."},
-    {"id":12,"question_vi":"Trong máy tính, hệ thống con _______ thực hiện các phép tính và toán tử logic.","question_en":"In a computer, the _______ subsystem performs calculations and logical operations.","answers_vi":[{"text":"ALU","correct":true},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":true},{"text":"input/output","correct":false},{"text":"memory","correct":false},{"text":"control unit","correct":false}],"tip_vi":"ALU (Arithmetic Logic Unit) là bộ phận của CPU chịu trách nhiệm thực hiện các phép toán số học và logic.","tip_en":"The ALU (Arithmetic Logic Unit) is the part of the CPU responsible for performing arithmetic and logical operations."},
-    {"id":13,"question_vi":"Trong máy tính, hệ thống con _______ lưu trữ dữ liệu và chương trình.","question_en":"In a computer, the _______ subsystem stores data and programs.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":true},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":false},{"text":"memory","correct":true},{"text":"control unit","correct":false}],"tip_vi":"Bộ nhớ (Memory) là thành phần chịu trách nhiệm lưu trữ cả chỉ thị (chương trình) và dữ liệu để CPU có thể truy cập và xử lý.","tip_en":"Memory is the component responsible for storing both instructions (programs) and data so the CPU can access and process them."},
-    {"id":14,"question_vi":"Trong máy tính, hệ thống con _______ chấp nhận dữ liệu và chương trình và gửi kết quả xử lý đến các thiết bị đầu ra.","question_en":"In a computer, the _______ subsystem accepts data and programs and sends processing results to output devices.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":true},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":true},{"text":"memory","correct":false},{"text":"control unit","correct":false}],"tip_vi":"Hệ thống con Nhập/Xuất (Input/Output) là cầu nối giữa máy tính và thế giới bên ngoài (người dùng, các thiết bị khác).","tip_en":"The Input/Output subsystem is the bridge between the computer and the outside world (users, other devices)."},
-    {"id":15,"question_vi":"Trong máy tính, hệ thống con _______ đóng vai trò là người quản lý các hệ thống con khác.","question_en":"In a computer, the _______ subsystem serves as a manager of the other subsystems.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":true}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":false},{"text":"memory","correct":false},{"text":"control unit","correct":true}],"tip_vi":"Đơn vị điều khiển (Control Unit) điều phối hoạt động của tất cả các bộ phận khác trong máy tính, giống như một người quản lý.","tip_en":"The Control Unit coordinates the activities of all other parts of the computer, like a manager."},
-    {"id":16,"question_vi":"Theo mô hình von Neumann, _______ được lưu trữ trong bộ nhớ.","question_en":"According to the von Neumann model, _______ are stored in memory.","answers_vi":[{"text":"chỉ dữ liệu","correct":false},{"text":"chỉ chương trình","correct":false},{"text":"dữ liệu và chương trình","correct":true},{"text":"không phải dữ liệu cũng không phải chương trình","correct":false}],"answers_en":[{"text":"only data","correct":false},{"text":"only programs","correct":false},{"text":"data and programs","correct":true},{"text":"neither data nor programs","correct":false}],"tip_vi":"Kiến trúc von Neumann đặc trưng bởi việc lưu trữ cả chương trình (chỉ thị) và dữ liệu trong cùng một không gian bộ nhớ.","tip_en":"The von Neumann architecture is characterized by storing both programs (instructions) and data in the same memory space."},
-    {"id":17,"question_vi":"_______ là một hệ thống con của máy tính thực hiện các hoạt động trên dữ liệu.","question_en":"The _______ is a computer subsystem that performs operations on data.","answers_vi":[{"text":"Bộ nhớ","correct":false},{"text":"CPU","correct":true},{"text":"Hệ thống con I/O","correct":false},{"text":"Đơn vị điều khiển","correct":false}],"answers_en":[{"text":"Memory","correct":false},{"text":"CPU","correct":true},{"text":"I/O subsystem","correct":false},{"text":"Control Unit","correct":false}],"tip_vi":"CPU (Central Processing Unit) là bộ não của máy tính, chịu trách nhiệm thực hiện hầu hết các xử lý.","tip_en":"The CPU (Central Processing Unit) is the brain of the computer, responsible for most of the processing."},
-    {"id":18,"question_vi":"_______ là một vị trí lưu trữ độc lập giữ dữ liệu tạm thời.","question_en":"_______ is a stand-alone storage location that holds data temporarily.","answers_vi":[{"text":"Một ALU","correct":false},{"text":"Một thanh ghi","correct":true},{"text":"Một đơn vị điều khiển","correct":false},{"text":"Một bus","correct":false}],"answers_en":[{"text":"An ALU","correct":false},{"text":"A register","correct":true},{"text":"A control unit","correct":false},{"text":"A bus","correct":false}],"tip_vi":"Thanh ghi (Register) là các vị trí lưu trữ nhỏ, tốc độ cao bên trong CPU được sử dụng để lưu giữ tạm thời dữ liệu đang được xử lý.","tip_en":"Registers are small, high-speed storage locations within the CPU used to temporarily hold data being processed."},
-    {"id":19,"question_vi":"Một thanh ghi trong CPU có thể chứa _______.","question_en":"A register in a CPU can hold _______.","answers_vi":[{"text":"chỉ dữ liệu","correct":false},{"text":"chỉ chỉ thị","correct":false},{"text":"chỉ giá trị của bộ đếm chương trình","correct":false},{"text":"dữ liệu, chỉ thị, hoặc giá trị của bộ đếm chương trình","correct":true}],"answers_en":[{"text":"only data","correct":false},{"text":"only instructions","correct":false},{"text":"only program counter values","correct":false},{"text":"data, instructions, or program counter values","correct":true}],"tip_vi":"Các thanh ghi có mục đích khác nhau; một số giữ dữ liệu, một số giữ địa chỉ của chỉ thị tiếp theo (bộ đếm chương trình), và một số giữ chính chỉ thị đang được thực thi.","tip_en":"Registers have different purposes; some hold data, some hold the address of the next instruction (program counter), and some hold the current instruction being executed."},
-    {"id":20,"question_vi":"Một đơn vị điều khiển với năm dây có thể xác định tối đa _______ hoạt động.","question_en":"A control unit with five wires can define up to _______ operations.","answers_vi":[{"text":"5","correct":false},{"text":"10","correct":false},{"text":"16","correct":false},{"text":"32","correct":true}],"answers_en":[{"text":"5","correct":false},{"text":"10","correct":false},{"text":"16","correct":false},{"text":"32","correct":true}],"tip_vi":"Với N dây (bit), bạn có thể biểu diễn 2^N trạng thái hoặc hoạt động khác nhau. 2^5 = 32.","tip_en":"With N wires (bits), you can represent 2^N different states or operations. 2^5 = 32."},
-    // Copy and paste the rest of the 162 questions here in the same JSON format
-    // ...
-    {"id":182,"question_vi":"Cái nào sau đây đại diện cho một tập hợp các mục dữ liệu chia sẻ một mối quan hệ cụ thể?","question_en":"Which of the following represents a set of data items that share a specific relationship?","answers_vi":[{"text":"ADT","correct":false},{"text":"Cấu trúc dữ liệu","correct":true},{"text":"Ngôn ngữ lập trình","correct":false},{"text":"Phần tử dữ liệu","correct":false}],"answers_en":[{"text":"ADT","correct":false},{"text":"Data structure","correct":true},{"text":"Programming language","correct":false},{"text":"Data element","correct":false}],"tip_vi":"Cấu trúc dữ liệu (Data Structure) là cách tổ chức, quản lý và lưu trữ dữ liệu để có thể truy cập và sửa đổi một cách hiệu quả.","tip_en":"A Data Structure is a way of organizing, managing, and storing data to enable efficient access and modification."}
-];
-// --- END OF QUESTION BANK ---
+    <script>
+        // Ngân hàng câu hỏi
+        const questionBank = [
+            {
+                id: 1,
+                question: "A step-by-step solution to a problem is called _______.",
+                options: ["hardware", "an operating system", "a computer language", "an algorithm"],
+                correctAnswer: 3,
+                explanation: "Một giải pháp từng bước cho một vấn đề được gọi là thuật toán.",
+                memoryTip: "Nhớ rằng thuật toán là một chuỗi các bước rõ ràng để giải quyết vấn đề."
+            },
+            {
+                id: 2,
+                question: "The _______ model is the basis for today's computers.",
+                options: ["Leibnitz", "von Neumann", "Pascal", "Charles Babbage"],
+                correctAnswer: 1,
+                explanation: "Mô hình von Neumann là cơ sở cho các máy tính ngày nay.",
+                memoryTip: "Von Neumann đề xuất mô hình với bộ nhớ chung cho cả chương trình và dữ liệu."
+            },
+            {
+                id: 3,
+                question: "The first electronic special-purpose computer was called ___.",
+                options: ["Pascal", "Pascaline", "ABC (Atanasoff-Berry Computer)", "ENIAC"],
+                correctAnswer: 2,
+                explanation: "Máy tính điện tử chuyên dụng đầu tiên được gọi là ABC (Atanasoff-Berry Computer).",
+                memoryTip: "ABC là viết tắt của Atanasoff-Berry Computer, máy tính điện tử đầu tiên."
+            },
+            {
+                id: 4,
+                question: "One of the first computers based on the von Neumann model was called ___.",
+                options: ["Pascal", "Pascaline", "ABC", "EDVAC"],
+                correctAnswer: 3,
+                explanation: "Một trong những máy tính đầu tiên dựa trên mô hình von Neumann được gọi là EDVAC.",
+                memoryTip: "EDVAC là máy tính đầu tiên sử dụng kiến trúc chương trình được lưu trữ."
+            },
+            {
+                id: 5,
+                question: "The first computing machine to use the idea of storage and programming was called ___.",
+                options: ["the Madeline", "EDVAC", "the Babbage machine", "the Jacquard loom"],
+                correctAnswer: 3,
+                explanation: "Máy tính đầu tiên sử dụng ý tưởng lưu trữ và lập trình được gọi là khung dệt Jacquard.",
+                memoryTip: "Khung dệt Jacquard sử dụng thẻ đục lỗ để lưu trữ mẫu dệt, tiền thân của lập trình."
+            },
+            {
+                id: 6,
+                question: "A 17th-century computing machine that could perform addition and subtraction was the _______.",
+                options: ["Pascaline", "Jacquard loom", "Analytical Engine", "Babbage machine"],
+                correctAnswer: 0,
+                explanation: "Một máy tính từ thế kỷ 17 có thể thực hiện phép cộng và trừ là Pascaline.",
+                memoryTip: "Pascaline do Blaise Pascal phát minh, là máy tính cơ học đầu tiên."
+            },
+            {
+                id: 7,
+                question: "Symbolic languages were developed in _______.",
+                options: ["1962", "1974", "1980", "1950"],
+                correctAnswer: 3,
+                explanation: "Ngôn ngữ ký hiệu được phát triển vào năm 1950.",
+                memoryTip: "Ngôn ngữ ký hiệu là tiền thân của ngôn ngữ lập trình cấp cao."
+            },
+            {
+                id: 8,
+                question: "When was Apple Macintosh II microcomputer introduced in the market?",
+                options: ["1964", "1970", "1986", "1987"],
+                correctAnswer: 3,
+                explanation: "Máy vi tính Apple Macintosh II được giới thiệu trên thị trường vào năm 1987.",
+                memoryTip: "Macintosh II là máy Mac đầu tiên có màu sắc và có thể mở rộng."
+            },
+            {
+                id: 9,
+                question: "What is the name given to the molecular-scale computer?",
+                options: ["Supercomputer", "Femtocomputer", "Nanocomputer", "Microcomputer"],
+                correctAnswer: 2,
+                explanation: "Máy tính ở quy mô phân tử được gọi là nanocomputer.",
+                memoryTip: "Tiền tố 'nano' chỉ kích thước cực nhỏ, ở cấp độ phân tử."
+            },
+            {
+                id: 10,
+                question: "Human beings are referred to as Homosapiens. Which device is called Silico sapiens?",
+                options: ["Monitor", "Hardware", "Robot", "Computer"],
+                correctAnswer: 3,
+                explanation: "Con người được gọi là Homosapiens. Thiết bị nào được gọi là Silico sapiens? Máy tính.",
+                memoryTip: "Silico sapiens nghĩa là 'sinh vật thông minh bằng silicon', ám chỉ máy tính."
+            }
+            // Thêm các câu hỏi khác ở đây...
+        ];
 
-// State variables
-let currentLanguage = 'vi';
-let quizQuestions = [];
-let currentQuestionIndex = 0;
-let score = 0;
-let userAnswers = [];
-let totalQuestionsSelected = 0;
-let theorySummaries = {};
+        // Biến toàn cục
+        let currentLanguage = 'vi';
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let quizStarted = false;
+        let questionCount = 10;
 
-// UI Elements
-const uiElements = {
-    langBtn: document.getElementById('lang-toggle-btn'),
-    theoryContent: document.getElementById('theory-content'),
-    quizContent: document.getElementById('quiz-content'),
-    theorySummaryDiv: document.getElementById('theory-summary'),
-    quizSetupDiv: document.getElementById('quiz-setup'),
-    quizContainerDiv: document.getElementById('quiz-container'),
-    resultsContainerDiv: document.getElementById('results-container'),
-    questionTextDiv: document.getElementById('question-text'),
-    answersContainerDiv: document.getElementById('answers-container'),
-    progressTextP: document.getElementById('progress-text'),
-    progressBar: document.getElementById('progress-bar'),
-    memoryTipDiv: document.getElementById('memory-tip'),
-    resultsListUl: document.getElementById('results-list'),
-    scoreP: document.getElementById('score'),
-    nextBtn: document.getElementById('next-btn'),
-    submitBtn: document.getElementById('submit-btn'),
-    numQuestionsInput: document.getElementById('num-questions-input')
-};
+        // Dịch nội dung
+        const translations = {
+            vi: {
+                title: "Ôn Tập Khoa Học Máy Tính",
+                subtitle: "Hệ thống câu hỏi trắc nghiệm toàn diện",
+                theoryTab: "Lý Thuyết",
+                quizTab: "Làm Bài Tập",
+                translateBtn: "Translate to English",
+                quizSetupTitle: "Thiết Lập Bài Kiểm Tra",
+                questionCountLabel: "Số câu hỏi bạn muốn làm:",
+                startQuiz: "Bắt Đầu Làm Bài",
+                prevQuestion: "Câu Trước",
+                nextQuestion: "Câu Tiếp Theo",
+                submitQuiz: "Nộp Bài",
+                resultTitle: "Kết Quả Bài Làm",
+                restartQuiz: "Làm Bài Khác",
+                correctFeedback: "Chính xác!",
+                incorrectFeedback: "Sai rồi!",
+                unanswered: "[Chưa trả lời]",
+                memoryTipTitle: "Mẹo ghi nhớ:",
+                footer: "Hệ thống ôn tập Khoa học Máy tính &copy; 2023"
+            },
+            en: {
+                title: "Computer Science Review",
+                subtitle: "Comprehensive MCQ question system",
+                theoryTab: "Theory",
+                quizTab: "Practice Quiz",
+                translateBtn: "Dịch sang Tiếng Việt",
+                quizSetupTitle: "Quiz Setup",
+                questionCountLabel: "Number of questions you want to answer:",
+                startQuiz: "Start Quiz",
+                prevQuestion: "Previous Question",
+                nextQuestion: "Next Question",
+                submitQuiz: "Submit Quiz",
+                resultTitle: "Quiz Results",
+                restartQuiz: "Take Another Quiz",
+                correctFeedback: "Correct!",
+                incorrectFeedback: "Incorrect!",
+                unanswered: "[Not answered]",
+                memoryTipTitle: "Memory Tip:",
+                footer: "Computer Science Review System &copy; 2023"
+            }
+        };
 
-// --- THEORY TAB LOGIC ---
-function generateTheoryFromBank() {
-    let summary_vi = '';
-    let summary_en = '';
-
-    mcqBank.forEach(q => {
-        const correctAnswerVi = q.answers_vi.find(a => a.correct).text;
-        const correctAnswerEn = q.answers_en.find(a => a.correct).text;
-        
-        let questionVi = q.question_vi;
-        if (questionVi.includes('_______')) {
-             questionVi = questionVi.replace('_______', `<span>${correctAnswerVi}</span>`);
-        } else {
-            questionVi = `${q.question_vi.slice(0, -1)}: <span>${correctAnswerVi}</span>`;
-        }
-
-        let questionEn = q.question_en;
-        if (questionEn.includes('_______')) {
-            questionEn = questionEn.replace('_______', `<span>${correctAnswerEn}</span>`);
-        } else {
-             questionEn = `${q.question_en.slice(0, -1)}: <span>${correctAnswerEn}</span>`;
-        }
-       
-        summary_vi += `<p>${questionVi}</p>`;
-        summary_en += `<p>${questionEn}</p>`;
-    });
-
-    theorySummaries = { vi: summary_vi, en: summary_en };
-}
-
-function renderTheory() {
-    uiElements.theorySummaryDiv.innerHTML = theorySummaries[currentLanguage];
-}
-
-// --- LANGUAGE TOGGLE LOGIC ---
-function toggleLanguage() {
-    currentLanguage = (currentLanguage === 'vi') ? 'en' : 'vi';
-    updateAllUIText();
-    if (uiElements.theoryContent.classList.contains('active')) {
-        renderTheory();
-    }
-    if (uiElements.quizContainerDiv.style.display !== 'none') {
-        renderCurrentQuestion(true); // true indicates it's a language switch
-    }
-    if (uiElements.resultsContainerDiv.style.display !== 'none') {
-        showResults();
-    }
-}
-
-function updateAllUIText() {
-    const isVietnamese = currentLanguage === 'vi';
-    const uiText = {
-        mainTitle: { vi: 'Ôn tập CSI106', en: 'CSI106 Review' },
-        langBtn: { vi: 'Translate to English', en: 'Dịch sang Tiếng Việt' },
-        theoryTab: { vi: 'Lý Thuyết', en: 'Theory' },
-        quizTab: { vi: 'Làm Quiz', en: 'Quiz' },
-        theoryTitle: { vi: 'Tóm Tắt Lý Thuyết Cốt Lõi', en: 'Core Theory Summary' },
-        quizSetupTitle: { vi: 'Nhập số câu hỏi bạn muốn làm:', en: 'Enter the number of questions:' },
-        startQuizBtn: { vi: 'Bắt đầu', en: 'Start Quiz' },
-        submitBtn: { vi: 'Nộp bài', en: 'Submit' },
-        nextBtn: { vi: 'Câu Tiếp Theo', en: 'Next Question' },
-        resultsTitle: { vi: 'Kết quả', en: 'Results' },
-        restartBtn: { vi: 'Làm lại', en: 'Restart' }
-    };
-
-    document.querySelector('h1').textContent = uiText.mainTitle[currentLanguage];
-    uiElements.langBtn.textContent = uiText.langBtn[currentLanguage];
-    document.getElementById('theory-tab-btn').textContent = uiText.theoryTab[currentLanguage];
-    document.getElementById('quiz-tab-btn').textContent = uiText.quizTab[currentLanguage];
-    document.getElementById('theory-title').textContent = uiText.theoryTitle[currentLanguage];
-    document.getElementById('quiz-setup-title').textContent = uiText.quizSetupTitle[currentLanguage];
-    document.getElementById('start-quiz-btn').textContent = uiText.startQuizBtn[currentLanguage];
-    uiElements.submitBtn.textContent = uiText.submitBtn[currentLanguage];
-    uiElements.nextBtn.textContent = uiText.nextBtn[currentLanguage];
-    document.getElementById('results-title').textContent = uiText.resultsTitle[currentLanguage];
-    document.getElementById('restart-btn').textContent = uiText.restartBtn[currentLanguage];
-}
-
-// --- TAB SWITCHING LOGIC ---
-function switchTab(tabName) {
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-    document.getElementById(`${tabName}-content`).classList.add('active');
-    document.getElementById(`${tabName}-tab-btn`).classList.add('active');
-}
-
-// --- QUIZ LOGIC ---
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-function startQuiz() {
-    const num = parseInt(uiElements.numQuestionsInput.value);
-    if (isNaN(num) || num < 1 || num > mcqBank.length) {
-        const alertMsg = currentLanguage === 'vi' 
-            ? `Vui lòng nhập một số hợp lệ từ 1 đến ${mcqBank.length}.`
-            : `Please enter a valid number between 1 and ${mcqBank.length}.`;
-        alert(alertMsg);
-        return;
-    }
-    
-    totalQuestionsSelected = num;
-    score = 0;
-    currentQuestionIndex = 0;
-    userAnswers = new Array(totalQuestionsSelected).fill(null);
-    
-    let shuffledBank = shuffleArray([...mcqBank]);
-    quizQuestions = shuffledBank.slice(0, totalQuestionsSelected);
-
-    uiElements.quizSetupDiv.style.display = 'none';
-    uiElements.resultsContainerDiv.style.display = 'none';
-    uiElements.quizContainerDiv.style.display = 'block';
-
-    renderCurrentQuestion(false);
-}
-
-function renderCurrentQuestion(isLanguageSwitch = false) {
-    if (currentQuestionIndex >= quizQuestions.length) return;
-    
-    const questionData = quizQuestions[currentQuestionIndex];
-    const questionLang = currentLanguage === 'vi' ? 'question_vi' : 'question_en';
-    const answersLang = currentLanguage === 'vi' ? 'answers_vi' : 'answers_en';
-    
-    uiElements.progressBar.style.width = `${((currentQuestionIndex) / totalQuestionsSelected) * 100}%`;
-    uiElements.progressTextP.textContent = `${currentLanguage === 'vi' ? 'Câu' : 'Question'} ${currentQuestionIndex + 1} / ${totalQuestionsSelected}`;
-    uiElements.questionTextDiv.textContent = questionData[questionLang];
-    uiElements.answersContainerDiv.innerHTML = '';
-    uiElements.memoryTipDiv.style.display = 'none';
-    uiElements.nextBtn.style.display = 'none';
-    uiElements.submitBtn.style.display = 'inline-block';
-
-    const answers = isLanguageSwitch 
-        ? [...questionData[answersLang]] // Keep order for consistency on translate
-        : shuffleArray([...questionData[answersLang]]);
-    
-    answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.className = 'answer-btn';
-        button.innerHTML = `${answer.text}<i class="icon"></i>`;
-        button.onclick = () => selectAnswer(button, answer.correct, answer.text);
-        uiElements.answersContainerDiv.appendChild(button);
-    });
-
-    const answered = userAnswers[currentQuestionIndex];
-    if (isLanguageSwitch && answered) {
-        applyAnswerState(answered);
-    }
-}
-
-function selectAnswer(selectedButton, isCorrect, selectedText) {
-    const currentAnswersVi = quizQuestions[currentQuestionIndex].answers_vi;
-    const currentAnswersEn = quizQuestions[currentQuestionIndex].answers_en;
-    
-    let originalIndex = -1;
-    if(currentLanguage === 'vi') {
-        originalIndex = currentAnswersVi.findIndex(a => a.text === selectedText);
-    } else {
-        originalIndex = currentAnswersEn.findIndex(a => a.text === selectedText);
-    }
-    
-    userAnswers[currentQuestionIndex] = { originalIndex: originalIndex, isCorrect: isCorrect };
-
-    applyAnswerState(userAnswers[currentQuestionIndex]);
-    if (isCorrect) score++;
-}
-
-function applyAnswerState(answered) {
-    const { originalIndex, isCorrect } = answered;
-    const currentAnswers = quizQuestions[currentQuestionIndex][currentLanguage === 'vi' ? 'answers_vi' : 'answers_en'];
-    const userChoiceText = currentAnswers[originalIndex].text;
-    const correctText = currentAnswers.find(a => a.correct).text;
-    
-    document.querySelectorAll('.answer-btn').forEach(btn => {
-        btn.disabled = true;
-        const btnText = btn.textContent;
-        const icon = btn.querySelector('.icon');
-
-        if (btnText === correctText) {
-            btn.classList.add('correct');
-            icon.textContent = '✔️';
-        }
-        
-        if (btnText === userChoiceText) {
-            if (!isCorrect) {
-                btn.classList.add('incorrect');
-                icon.textContent = '❌';
+        // Hàm dịch toàn bộ trang
+        function translatePage() {
+            currentLanguage = currentLanguage === 'vi' ? 'en' : 'vi';
+            
+            // Cập nhật nút dịch
+            document.getElementById('translateBtn').textContent = translations[currentLanguage].translateBtn;
+            
+            // Cập nhật tiêu đề và phụ đề
+            document.querySelector('h1').textContent = translations[currentLanguage].title;
+            document.querySelector('.subtitle').textContent = translations[currentLanguage].subtitle;
+            
+            // Cập nhật tab
+            document.querySelectorAll('.tab').forEach((tab, index) => {
+                if (index === 0) {
+                    tab.textContent = translations[currentLanguage].theoryTab;
+                } else {
+                    tab.textContent = translations[currentLanguage].quizTab;
+                }
+            });
+            
+            // Cập nhật footer
+            document.querySelector('footer p').textContent = translations[currentLanguage].footer;
+            
+            // Nếu đang ở tab quiz, cập nhật nội dung
+            if (document.getElementById('quiz').classList.contains('active')) {
+                updateQuizContent();
+            }
+            
+            // Nếu đang xem kết quả, cập nhật kết quả
+            if (document.getElementById('resultArea').style.display !== 'none') {
+                displayResults();
             }
         }
-    });
 
-    if (!isCorrect) {
-        const tipLang = currentLanguage === 'vi' ? 'tip_vi' : 'tip_en';
-        uiElements.memoryTipDiv.textContent = `${currentLanguage === 'vi' ? 'Mẹo ghi nhớ' : 'Memory Tip'}: ${quizQuestions[currentQuestionIndex][tipLang]}`;
-        uiElements.memoryTipDiv.style.display = 'block';
-    }
-
-    uiElements.nextBtn.style.display = 'inline-block';
-    uiElements.submitBtn.style.display = 'none';
-}
-
-function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < quizQuestions.length) {
-        renderCurrentQuestion(false);
-    } else {
-        uiElements.progressBar.style.width = '100%';
-        showResults();
-    }
-}
-
-function submitQuiz() {
-    uiElements.progressBar.style.width = '100%';
-    showResults();
-}
-
-function showResults() {
-    uiElements.quizContainerDiv.style.display = 'none';
-    uiElements.resultsContainerDiv.style.display = 'block';
-    
-    const scoreText = currentLanguage === 'vi' ? `Bạn đúng ${score} / ${totalQuestionsSelected} câu!` : `You got ${score} / ${totalQuestionsSelected} correct!`;
-    uiElements.scoreP.textContent = scoreText;
-    
-    uiElements.resultsListUl.innerHTML = '';
-    quizQuestions.forEach((question, index) => {
-        const li = document.createElement('li');
-        const userAnswer = userAnswers[index];
-        const questionLang = currentLanguage === 'vi' ? 'question_vi' : 'question_en';
-        const answersLang = currentLanguage === 'vi' ? 'answers_vi' : 'answers_en';
-        const tipLang = currentLanguage === 'vi' ? 'tip_vi' : 'tip_en';
-        const correctAnswerText = question[answersLang].find(a => a.correct).text;
-
-        let resultHTML = `<div class="result-question">${index + 1}. ${question[questionLang]}</div>`;
-        
-        if (userAnswer) {
-            li.classList.add(userAnswer.isCorrect ? 'result-correct' : 'result-incorrect');
-            const yourAnswerLabel = currentLanguage === 'vi' ? 'Bạn chọn' : 'You chose';
-            const userChoiceText = question[answersLang][userAnswer.originalIndex].text;
-            resultHTML += `<div class="result-answer">${yourAnswerLabel}: ${userChoiceText}</div>`;
-            if (!userAnswer.isCorrect) {
-                const correctLabel = currentLanguage === 'vi' ? 'Đáp án đúng' : 'Correct answer';
-                resultHTML += `<div class="result-answer">${correctLabel}: ${correctAnswerText}</div>`;
-                resultHTML += `<div class="result-tip">💡 ${question[tipLang]}</div>`;
+        // Cập nhật nội dung quiz theo ngôn ngữ
+        function updateQuizContent() {
+            const quizSetup = document.getElementById('quizSetup');
+            if (quizSetup.style.display !== 'none') {
+                quizSetup.querySelector('h2').textContent = translations[currentLanguage].quizSetupTitle;
+                quizSetup.querySelector('label').textContent = translations[currentLanguage].questionCountLabel;
+                document.getElementById('startQuiz').textContent = translations[currentLanguage].startQuiz;
             }
-        } else {
-            li.classList.add('result-incorrect');
-            const unansweredLabel = currentLanguage === 'vi' ? 'Bạn đã bỏ qua' : 'You skipped';
-            const correctLabel = currentLanguage === 'vi' ? 'Đáp án đúng' : 'Correct answer';
-            resultHTML += `<div class="result-answer">${unansweredLabel}</div>`;
-            resultHTML += `<div class="result-answer">${correctLabel}: ${correctAnswerText}</div>`;
-            resultHTML += `<div class="result-tip">💡 ${question[tipLang]}</div>`;
+            
+            if (document.getElementById('quizArea').style.display !== 'none') {
+                document.getElementById('prevQuestion').textContent = translations[currentLanguage].prevQuestion;
+                document.getElementById('nextQuestion').textContent = translations[currentLanguage].nextQuestion;
+                document.getElementById('submitQuiz').textContent = translations[currentLanguage].submitQuiz;
+                
+                // Cập nhật câu hỏi hiện tại
+                displayQuestion(currentQuestionIndex);
+            }
         }
-        
-        li.innerHTML = resultHTML;
-        uiElements.resultsListUl.appendChild(li);
-    });
-}
 
-function restartQuiz() {
-    uiElements.resultsContainerDiv.style.display = 'none';
-    uiElements.quizSetupDiv.style.display = 'block';
-}
+        // Hiển thị câu hỏi
+        function displayQuestion(index) {
+            if (currentQuestions.length === 0) return;
+            
+            const question = currentQuestions[index];
+            const questionNumber = document.getElementById('questionNumber');
+            const questionText = document.getElementById('questionText');
+            const optionsContainer = document.getElementById('optionsContainer');
+            const feedback = document.getElementById('feedback');
+            const memoryTip = document.getElementById('memoryTip');
+            
+            // Cập nhật số câu hỏi
+            questionNumber.textContent = `${currentLanguage === 'vi' ? 'Câu hỏi' : 'Question'} ${index + 1}/${currentQuestions.length}`;
+            
+            // Hiển thị câu hỏi
+            questionText.textContent = question.question;
+            
+            // Xóa các lựa chọn cũ
+            optionsContainer.innerHTML = '';
+            
+            // Hiển thị các lựa chọn
+            question.options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = `${String.fromCharCode(65 + i)}. ${option}`;
+                optionElement.dataset.index = i;
+                
+                optionElement.addEventListener('click', () => {
+                    if (quizStarted && !userAnswers[index].answered) {
+                        selectOption(i, index);
+                    }
+                });
+                
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Ẩn phản hồi và mẹo ghi nhớ
+            feedback.style.display = 'none';
+            memoryTip.style.display = 'none';
+            
+            // Nếu đã trả lời câu hỏi này, hiển thị kết quả
+            if (userAnswers[index].answered) {
+                showAnswerFeedback(index);
+            }
+            
+            // Cập nhật nút điều hướng
+            updateNavigationButtons();
+            
+            // Cập nhật thanh tiến trình
+            updateProgressBar();
+        }
 
-// --- INITIALIZATION ---
-document.addEventListener('DOMContentLoaded', () => {
-    uiElements.langBtn.addEventListener('click', toggleLanguage);
-    generateTheoryFromBank();
-    renderTheory();
-    updateAllUIText();
-});
+        // Chọn một lựa chọn
+        function selectOption(optionIndex, questionIndex) {
+            const question = currentQuestions[questionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            // Đánh dấu lựa chọn của người dùng
+            userAnswers[questionIndex] = {
+                selected: optionIndex,
+                answered: true,
+                correct: optionIndex === question.correctAnswer
+            };
+            
+            // Hiển thị phản hồi
+            showAnswerFeedback(questionIndex);
+            
+            // Cập nhật nút điều hướng
+            updateNavigationButtons();
+        }
 
-</script>
+        // Hiển thị phản hồi cho câu trả lời
+        function showAnswerFeedback(questionIndex) {
+            const question = currentQuestions[questionIndex];
+            const userAnswer = userAnswers[questionIndex];
+            const options = document.querySelectorAll('.option');
+            const feedback = document.getElementById('feedback');
+            const memoryTip = document.getElementById('memoryTip');
+            
+            // Đánh dấu các lựa chọn
+            options.forEach((option, i) => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                
+                if (i === userAnswer.selected) {
+                    option.classList.add('selected');
+                }
+                
+                if (i === question.correctAnswer) {
+                    option.classList.add('correct');
+                } else if (i === userAnswer.selected && !userAnswer.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Hiển thị phản hồi
+            feedback.textContent = userAnswer.correct ? 
+                `${translations[currentLanguage].correctFeedback} ${question.explanation}` : 
+                `${translations[currentLanguage].incorrectFeedback} ${question.explanation}`;
+            
+            feedback.className = `feedback ${userAnswer.correct ? 'correct' : 'incorrect'}`;
+            feedback.style.display = 'block';
+            
+            // Hiển thị mẹo ghi nhớ nếu trả lời sai
+            if (!userAnswer.correct && question.memoryTip) {
+                memoryTip.innerHTML = `<strong>${translations[currentLanguage].memoryTipTitle}</strong> ${question.memoryTip}`;
+                memoryTip.style.display = 'block';
+            } else {
+                memoryTip.style.display = 'none';
+            }
+        }
+
+        // Cập nhật nút điều hướng
+        function updateNavigationButtons() {
+            const prevButton = document.getElementById('prevQuestion');
+            const nextButton = document.getElementById('nextQuestion');
+            const submitButton = document.getElementById('submitQuiz');
+            
+            // Nút Câu trước
+            prevButton.disabled = currentQuestionIndex === 0;
+            
+            // Nút Câu tiếp theo
+            if (currentQuestionIndex === currentQuestions.length - 1) {
+                nextButton.style.display = 'none';
+                submitButton.style.display = 'inline-block';
+            } else {
+                nextButton.style.display = 'inline-block';
+                submitButton.style.display = 'inline-block';
+            }
+            
+            // Kiểm tra xem đã trả lời hết tất cả câu hỏi chưa
+            const allAnswered = userAnswers.every(answer => answer.answered);
+            if (allAnswered) {
+                submitButton.disabled = false;
+            }
+        }
+
+        // Cập nhật thanh tiến trình
+        function updateProgressBar() {
+            const progressBar = document.getElementById('quizProgress');
+            const answeredCount = userAnswers.filter(answer => answer.answered).length;
+            const progress = (answeredCount / currentQuestions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Bắt đầu bài quiz
+        function startQuiz() {
+            questionCount = parseInt(document.getElementById('questionCount').value) || 10;
+            
+            // Tạo danh sách câu hỏi ngẫu nhiên
+            currentQuestions = getRandomQuestions(questionCount);
+            
+            // Khởi tạo mảng câu trả lời của người dùng
+            userAnswers = Array(questionCount).fill().map(() => ({
+                selected: -1,
+                answered: false,
+                correct: false
+            }));
+            
+            // Đặt lại chỉ số câu hỏi hiện tại
+            currentQuestionIndex = 0;
+            quizStarted = true;
+            
+            // Hiển thị khu vực quiz
+            document.getElementById('quizSetup').style.display = 'none';
+            document.getElementById('quizArea').style.display = 'block';
+            document.getElementById('resultArea').style.display = 'none';
+            
+            // Hiển thị câu hỏi đầu tiên
+            displayQuestion(currentQuestionIndex);
+        }
+
+        // Lấy câu hỏi ngẫu nhiên
+        function getRandomQuestions(count) {
+            // Tạo một bản sao của ngân hàng câu hỏi
+            const shuffled = [...questionBank];
+            
+            // Xáo trộn câu hỏi
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            
+            // Xáo trộn các lựa chọn cho mỗi câu hỏi
+            shuffled.slice(0, count).forEach(question => {
+                // Tạo mảng các chỉ số lựa chọn
+                const indices = question.options.map((_, index) => index);
+                
+                // Xáo trộn các chỉ số
+                for (let i = indices.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [indices[i], indices[j]] = [indices[j], indices[i]];
+                }
+                
+                // Tạo các lựa chọn mới
+                const newOptions = indices.map(i => question.options[i]);
+                
+                // Tìm vị trí của đáp án đúng trong mảng mới
+                const newCorrectAnswer = indices.indexOf(question.correctAnswer);
+                
+                // Cập nhật câu hỏi
+                question.options = newOptions;
+                question.correctAnswer = newCorrectAnswer;
+            });
+            
+            return shuffled.slice(0, count);
+        }
+
+        // Chuyển đến câu hỏi tiếp theo
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion(currentQuestionIndex);
+            }
+        }
+
+        // Chuyển đến câu hỏi trước đó
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion(currentQuestionIndex);
+            }
+        }
+
+        // Nộp bài
+        function submitQuiz() {
+            // Đánh dấu các câu chưa trả lời là sai
+            userAnswers.forEach((answer, index) => {
+                if (!answer.answered) {
+                    userAnswers[index] = {
+                        selected: -1,
+                        answered: true,
+                        correct: false
+                    };
+                }
+            });
+            
+            // Hiển thị kết quả
+            displayResults();
+        }
+
+        // Hiển thị kết quả
+        function displayResults() {
+            // Ẩn khu vực quiz
+            document.getElementById('quizArea').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'block';
+            
+            // Tính điểm
+            const correctCount = userAnswers.filter(answer => answer.correct).length;
+            const scoreElement = document.getElementById('finalScore');
+            scoreElement.textContent = `${correctCount}/${userAnswers.length}`;
+            
+            // Hiển thị chi tiết kết quả
+            const resultDetails = document.getElementById('resultDetails');
+            resultDetails.innerHTML = '';
+            
+            currentQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const resultItem = document.createElement('div');
+                resultItem.className = `result-item ${userAnswer.correct ? 'correct' : 'incorrect'}`;
+                
+                let userAnswerText;
+                if (userAnswer.selected === -1) {
+                    userAnswerText = translations[currentLanguage].unanswered;
+                } else {
+                    userAnswerText = `${String.fromCharCode(65 + userAnswer.selected)}. ${question.options[userAnswer.selected]}`;
+                }
+                
+                const correctAnswerText = `${String.fromCharCode(65 + question.correctAnswer)}. ${question.options[question.correctAnswer]}`;
+                
+                resultItem.innerHTML = `
+                    <div class="result-question">${index + 1}. ${question.question}</div>
+                    <div class="result-answer"><strong>${currentLanguage === 'vi' ? 'Câu trả lời của bạn:' : 'Your answer:'}</strong> ${userAnswerText}</div>
+                    <div class="result-answer"><strong>${currentLanguage === 'vi' ? 'Đáp án đúng:' : 'Correct answer:'}</strong> ${correctAnswerText}</div>
+                    <div class="result-explanation">${question.explanation}</div>
+                    ${!userAnswer.correct && question.memoryTip ? `<div class="memory-tip">${translations[currentLanguage].memoryTipTitle} ${question.memoryTip}</div>` : ''}
+                `;
+                
+                resultDetails.appendChild(resultItem);
+            });
+        }
+
+        // Làm bài quiz mới
+        function restartQuiz() {
+            document.getElementById('quizSetup').style.display = 'block';
+            document.getElementById('quizArea').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'none';
+            quizStarted = false;
+        }
+
+        // Khởi tạo sự kiện
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sự kiện cho các tab
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Xóa lớp active từ tất cả các tab và nội dung tab
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Thêm lớp active cho tab được chọn
+                    this.classList.add('active');
+                    document.getElementById(this.dataset.tab).classList.add('active');
+                    
+                    // Cập nhật nội dung nếu cần
+                    if (this.dataset.tab === 'quiz') {
+                        updateQuizContent();
+                    }
+                });
+            });
+            
+            // Sự kiện cho nút dịch
+            document.getElementById('translateBtn').addEventListener('click', translatePage);
+            
+            // Sự kiện cho nút bắt đầu quiz
+            document.getElementById('startQuiz').addEventListener('click', startQuiz);
+            
+            // Sự kiện cho nút điều hướng
+            document.getElementById('prevQuestion').addEventListener('click', prevQuestion);
+            document.getElementById('nextQuestion').addEventListener('click', nextQuestion);
+            document.getElementById('submitQuiz').addEventListener('click', submitQuiz);
+            
+            // Sự kiện cho nút làm bài mới
+            document.getElementById('restartQuiz').addEventListener('click', restartQuiz);
+        });
+    </script>
 </body>
 </html>
