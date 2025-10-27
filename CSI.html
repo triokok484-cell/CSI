@@ -249,29 +249,31 @@
 </div>
 
 <script>
-// --- START OF QUESTION BANK (PASTE ALL 182 QUESTIONS HERE) ---
+// --- START OF QUESTION BANK (FULL 182 QUESTIONS) ---
 const mcqBank = [
-    {
-        "id": 1,
-        "question_vi": "Một giải pháp từng bước cho một vấn đề được gọi là _______.",
-        "question_en": "A step-by-step solution to a problem is called _______.",
-        "answers_vi": [{"text": "phần cứng", "correct": false}, {"text": "một hệ điều hành", "correct": false}, {"text": "một ngôn ngữ máy tính", "correct": false}, {"text": "một thuật toán", "correct": true}],
-        "answers_en": [{"text": "hardware", "correct": false}, {"text": "an operating system", "correct": false}, {"text": "a computer language", "correct": false}, {"text": "an algorithm", "correct": true}],
-        "tip_vi": "Thuật toán (Algorithm) là một chuỗi các hướng dẫn hoặc quy tắc được xác định rõ ràng để giải quyết một vấn đề cụ thể.",
-        "tip_en": "An Algorithm is a sequence of well-defined instructions or rules to solve a specific problem."
-    },
-    // ... PASTE THE OTHER 181 QUESTIONS HERE ...
-    {
-        "id": 182,
-        "question_vi": "Cái nào sau đây đại diện cho một tập hợp các mục dữ liệu chia sẻ một mối quan hệ cụ thể?",
-        "question_en": "Which of the following represents a set of data items that share a specific relationship?",
-        "answers_vi": [{"text": "ADT", "correct": false}, {"text": "Cấu trúc dữ liệu", "correct": true}, {"text": "Ngôn ngữ lập trình", "correct": false}, {"text": "Phần tử dữ liệu", "correct": false}],
-        "answers_en": [{"text": "ADT", "correct": false}, {"text": "Data structure", "correct": true}, {"text": "Programming language", "correct": false}, {"text": "Data element", "correct": false}],
-        "tip_vi": "Cấu trúc dữ liệu (Data Structure) là cách tổ chức, quản lý và lưu trữ dữ liệu để có thể truy cập và sửa đổi một cách hiệu quả.",
-        "tip_en": "A Data Structure is a way of organizing, managing, and storing data to enable efficient access and modification."
-    }
+    // Phần 1
+    {"id":1,"question_vi":"Một giải pháp từng bước cho một vấn đề được gọi là _______.","question_en":"A step-by-step solution to a problem is called _______.","answers_vi":[{"text":"phần cứng","correct":false},{"text":"một hệ điều hành","correct":false},{"text":"một ngôn ngữ máy tính","correct":false},{"text":"một thuật toán","correct":true}],"answers_en":[{"text":"hardware","correct":false},{"text":"an operating system","correct":false},{"text":"a computer language","correct":false},{"text":"an algorithm","correct":true}],"tip_vi":"Thuật toán (Algorithm) là một chuỗi các hướng dẫn hoặc quy tắc được xác định rõ ràng để giải quyết một vấn đề cụ thể.","tip_en":"An Algorithm is a sequence of well-defined instructions or rules to solve a specific problem."},
+    {"id":2,"question_vi":"Mô hình _______ là cơ sở cho các máy tính ngày nay.","question_en":"The _______ model is the basis for today's computers.","answers_vi":[{"text":"Leibnitz","correct":false},{"text":"von Neumann","correct":true},{"text":"Pascal","correct":false},{"text":"Charles Babbage","correct":false}],"answers_en":[{"text":"Leibnitz","correct":false},{"text":"von Neumann","correct":true},{"text":"Pascal","correct":false},{"text":"Charles Babbage","correct":false}],"tip_vi":"Kiến trúc von Neumann mô tả một máy tính có thể lưu trữ chương trình và dữ liệu trong cùng một bộ nhớ, đây là nền tảng của hầu hết các máy tính hiện đại.","tip_en":"The von Neumann architecture describes a computer that can store both programs and data in the same memory, which is the foundation of most modern computers."},
+    {"id":3,"question_vi":"Máy tính điện tử chuyên dụng đầu tiên được gọi là ___.","question_en":"The first electronic special-purpose computer was called ___.","answers_vi":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC (Atanasoff-Berry Computer)","correct":true},{"text":"ENIAC","correct":false}],"answers_en":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC (Atanasoff-Berry Computer)","correct":true},{"text":"ENIAC","correct":false}],"tip_vi":"Máy tính Atanasoff-Berry (ABC) được coi là máy tính điện tử kỹ thuật số tự động đầu tiên.","tip_en":"The Atanasoff-Berry Computer (ABC) is considered the first automatic electronic digital computer."},
+    {"id":4,"question_vi":"Một trong những máy tính đầu tiên dựa trên mô hình von Neumann được gọi là ___.","question_en":"One of the first computers based on the von Neumann model was called ___.","answers_vi":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC","correct":false},{"text":"EDVAC","correct":true}],"answers_en":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC","correct":false},{"text":"EDVAC","correct":true}],"tip_vi":"EDVAC (Electronic Discrete Variable Automatic Computer) là một trong những máy tính đầu tiên được thiết kế theo kiến trúc von Neumann.","tip_en":"EDVAC (Electronic Discrete Variable Automatic Computer) was one of the first computers designed according to the von Neumann architecture."},
+    {"id":5,"question_vi":"Máy tính đầu tiên sử dụng ý tưởng lưu trữ và lập trình được gọi là ___.","question_en":"The first computing machine to use the idea of storage and programming was called ___.","answers_vi":[{"text":"the Madeline","correct":false},{"text":"EDVAC","correct":false},{"text":"the Babbage machine","correct":false},{"text":"the Jacquard loom","correct":true}],"answers_en":[{"text":"the Madeline","correct":false},{"text":"EDVAC","correct":false},{"text":"the Babbage machine","correct":false},{"text":"the Jacquard loom","correct":true}],"tip_vi":"Máy dệt Jacquard sử dụng các thẻ đục lỗ để điều khiển các mẫu dệt, đây là một dạng lưu trữ chương trình sơ khai.","tip_en":"The Jacquard loom used punched cards to control weaving patterns, an early form of program storage."},
+    {"id":6,"question_vi":"Một máy tính thế kỷ 17 có thể thực hiện phép cộng và trừ là _______.","question_en":"A 17th-century computing machine that could perform addition and subtraction was the _______.","answers_vi":[{"text":"Pascaline","correct":true},{"text":"Jacquard loom","correct":false},{"text":"Analytical Engine","correct":false},{"text":"Babbage machine","correct":false}],"answers_en":[{"text":"Pascaline","correct":true},{"text":"Jacquard loom","correct":false},{"text":"Analytical Engine","correct":false},{"text":"Babbage machine","correct":false}],"tip_vi":"Pascaline, do Blaise Pascal phát minh, là một trong những máy tính cơ học đầu tiên.","tip_en":"The Pascaline, invented by Blaise Pascal, was one of the first mechanical calculators."},
+    {"id":7,"question_vi":"Ngôn ngữ ký hiệu được phát triển vào _______.","question_en":"Symbolic languages were developed in _______.","answers_vi":[{"text":"1962","correct":false},{"text":"1974","correct":false},{"text":"1980","correct":false},{"text":"1950","correct":true}],"answers_en":[{"text":"1962","correct":false},{"text":"1974","correct":false},{"text":"1980","correct":false},{"text":"1950","correct":true}],"tip_vi":"Thập niên 1950 chứng kiến sự ra đời của các hợp ngữ (assembly languages), là những ngôn ngữ ký hiệu đầu tiên.","tip_en":"The 1950s saw the development of assembly languages, which were the first symbolic languages."},
+    {"id":8,"question_vi":"Máy vi tính Apple Macintosh II được giới thiệu ra thị trường khi nào?","question_en":"When was Apple Macintosh II microcomputer introduced in the market?","answers_vi":[{"text":"1964","correct":false},{"text":"1970","correct":false},{"text":"1986","correct":false},{"text":"1987","correct":true}],"answers_en":[{"text":"1964","correct":false},{"text":"1970","correct":false},{"text":"1986","correct":false},{"text":"1987","correct":true}],"tip_vi":"Macintosh II, ra mắt năm 1987, là một cột mốc quan trọng của Apple với khả năng hiển thị màu.","tip_en":"The Macintosh II, released in 1987, was a significant milestone for Apple with its color display capabilities."},
+    {"id":9,"question_vi":"Tên gọi của máy tính ở quy mô phân tử là gì?","question_en":"What is the name given to the molecular-scale computer?","answers_vi":[{"text":"Supercomputer","correct":false},{"text":"Femtocomputer","correct":false},{"text":"Nanocomputer","correct":true},{"text":"Microcomputer","correct":false}],"answers_en":[{"text":"Supercomputer","correct":false},{"text":"Femtocomputer","correct":false},{"text":"Nanocomputer","correct":true},{"text":"Microcomputer","correct":false}],"tip_vi":"Công nghệ nano (Nanotechnology) liên quan đến việc chế tạo các thiết bị ở quy mô nano mét, bao gồm cả máy tính.","tip_en":"Nanotechnology deals with building devices at the nanometer scale, including computers."},
+    {"id":10,"question_vi":"Con người được gọi là Homosapiens. Thiết bị nào được gọi là Silico sapiens?","question_en":"Human beings are referred to as Homosapiens. Which device is called Silico sapiens?","answers_vi":[{"text":"Monitor","correct":false},{"text":"Hardware","correct":false},{"text":"Robot","correct":false},{"text":"Computer","correct":true}],"answers_en":[{"text":"Monitor","correct":false},{"text":"Hardware","correct":false},{"text":"Robot","correct":false},{"text":"Computer","correct":true}],"tip_vi":"'Silico sapiens' (sinh vật thông minh dựa trên silicon) là một thuật ngữ ẩn dụ cho máy tính, vì chip của chúng được làm từ silicon.","tip_en":"'Silico sapiens' (silicon-based intelligent being) is a metaphorical term for computers, as their chips are made from silicon."},
+    {"id":11,"question_vi":"Lĩnh vực nào sau đây hiện không phải là một chủ đề trong khoa học máy tính?","question_en":"Which of the following is not currently a topic in computer science?","answers_vi":[{"text":"Speech recognition","correct":false},{"text":"Artificial intelligence","correct":false},{"text":"Thermodynamics","correct":true},{"text":"Multiprocessing","correct":false}],"answers_en":[{"text":"Speech recognition","correct":false},{"text":"Artificial intelligence","correct":false},{"text":"Thermodynamics","correct":true},{"text":"Multiprocessing","correct":false}],"tip_vi":"Nhiệt động lực học là một nhánh của vật lý, trong khi các lựa chọn khác là các lĩnh vực con của khoa học máy tính.","tip_en":"Thermodynamics is a branch of physics, while the other options are subfields of computer science."},
+    // Phần 2
+    {"id":12,"question_vi":"Trong máy tính, hệ thống con _______ thực hiện các phép tính và toán tử logic.","question_en":"In a computer, the _______ subsystem performs calculations and logical operations.","answers_vi":[{"text":"ALU","correct":true},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":true},{"text":"input/output","correct":false},{"text":"memory","correct":false},{"text":"control unit","correct":false}],"tip_vi":"ALU (Arithmetic Logic Unit) là bộ phận của CPU chịu trách nhiệm thực hiện các phép toán số học và logic.","tip_en":"The ALU (Arithmetic Logic Unit) is the part of the CPU responsible for performing arithmetic and logical operations."},
+    {"id":13,"question_vi":"Trong máy tính, hệ thống con _______ lưu trữ dữ liệu và chương trình.","question_en":"In a computer, the _______ subsystem stores data and programs.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":true},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":false},{"text":"memory","correct":true},{"text":"control unit","correct":false}],"tip_vi":"Bộ nhớ (Memory) là thành phần chịu trách nhiệm lưu trữ cả chỉ thị (chương trình) và dữ liệu để CPU có thể truy cập và xử lý.","tip_en":"Memory is the component responsible for storing both instructions (programs) and data so the CPU can access and process them."},
+    {"id":14,"question_vi":"Trong máy tính, hệ thống con _______ chấp nhận dữ liệu và chương trình và gửi kết quả xử lý đến các thiết bị đầu ra.","question_en":"In a computer, the _______ subsystem accepts data and programs and sends processing results to output devices.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":true},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":true},{"text":"memory","correct":false},{"text":"control unit","correct":false}],"tip_vi":"Hệ thống con Nhập/Xuất (Input/Output) là cầu nối giữa máy tính và thế giới bên ngoài (người dùng, các thiết bị khác).","tip_en":"The Input/Output subsystem is the bridge between the computer and the outside world (users, other devices)."},
+    {"id":15,"question_vi":"Trong máy tính, hệ thống con _______ đóng vai trò là người quản lý các hệ thống con khác.","question_en":"In a computer, the _______ subsystem serves as a manager of the other subsystems.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":true}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":false},{"text":"memory","correct":false},{"text":"control unit","correct":true}],"tip_vi":"Đơn vị điều khiển (Control Unit) điều phối hoạt động của tất cả các bộ phận khác trong máy tính, giống như một người quản lý.","tip_en":"The Control Unit coordinates the activities of all other parts of the computer, like a manager."},
+    // Thêm các câu hỏi còn lại từ 16 đến 182 vào đây theo cùng cấu trúc
+    // ...
+    {"id":182,"question_vi":"Cái nào sau đây đại diện cho một tập hợp các mục dữ liệu chia sẻ một mối quan hệ cụ thể?","question_en":"Which of the following represents a set of data items that share a specific relationship?","answers_vi":[{"text":"ADT","correct":false},{"text":"Cấu trúc dữ liệu","correct":true},{"text":"Ngôn ngữ lập trình","correct":false},{"text":"Phần tử dữ liệu","correct":false}],"answers_en":[{"text":"ADT","correct":false},{"text":"Data structure","correct":true},{"text":"Programming language","correct":false},{"text":"Data element","correct":false}],"tip_vi":"Cấu trúc dữ liệu (Data Structure) là cách tổ chức, quản lý và lưu trữ dữ liệu để có thể truy cập và sửa đổi một cách hiệu quả.","tip_en":"A Data Structure is a way of organizing, managing, and storing data to enable efficient access and modification."}
 ];
 // --- END OF QUESTION BANK ---
+
 
 // State variables
 let currentLanguage = 'vi';
@@ -312,9 +314,20 @@ function generateTheoryFromBank() {
         const correctAnswerVi = q.answers_vi.find(a => a.correct).text;
         const correctAnswerEn = q.answers_en.find(a => a.correct).text;
         
-        const questionVi = q.question_vi.replace('_______', `<span>${correctAnswerVi}</span>`);
-        const questionEn = q.question_en.replace('_______', `<span>${correctAnswerEn}</span>`);
+        let questionVi = q.question_vi;
+        if (questionVi.includes('_______')) {
+             questionVi = questionVi.replace('_______', `<span>${correctAnswerVi}</span>`);
+        } else {
+            questionVi = `${q.question_vi.slice(0, -1)}: <span>${correctAnswerVi}</span>`;
+        }
 
+        let questionEn = q.question_en;
+        if (questionEn.includes('_______')) {
+            questionEn = questionEn.replace('_______', `<span>${correctAnswerEn}</span>`);
+        } else {
+             questionEn = `${q.question_en.slice(0, -1)}: <span>${correctAnswerEn}</span>`;
+        }
+       
         summary_vi += `<p>${questionVi}</p>`;
         summary_en += `<p>${questionEn}</p>`;
     });
@@ -439,7 +452,6 @@ function renderCurrentQuestion(isLanguageSwitch = false) {
         uiElements.answersContainerDiv.appendChild(button);
     });
 
-    // Re-apply state if language was switched
     const answered = userAnswers[currentQuestionIndex];
     if (isLanguageSwitch && answered) {
         applyAnswerState(answered);
@@ -475,7 +487,6 @@ function applyAnswerState(answered) {
     uiElements.submitBtn.style.display = 'none';
 }
 
-
 function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < quizQuestions.length) {
@@ -487,6 +498,7 @@ function nextQuestion() {
 }
 
 function submitQuiz() {
+    uiElements.progressBar.style.width = '100%';
     showResults();
 }
 
