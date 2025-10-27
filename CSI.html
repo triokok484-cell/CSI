@@ -161,12 +161,11 @@
         .answer-btn.correct, .answer-btn.incorrect { transform: scale(1); }
         .answer-btn.correct { border-color: var(--success-color); background-color: #f0fff4; }
         .answer-btn.incorrect { border-color: var(--danger-color); background-color: #fff5f5; }
-        .answer-btn::after {
+        .answer-btn .icon {
             font-size: 1.5rem;
             margin-left: auto;
+            font-style: normal;
         }
-        .answer-btn.correct::after { content: '✔️'; color: var(--success-color); }
-        .answer-btn.incorrect::after { content: '❌'; color: var(--danger-color); }
         
         #quiz-footer {
             margin-top: 25px;
@@ -251,7 +250,7 @@
 <script>
 // --- START OF QUESTION BANK (FULL 182 QUESTIONS) ---
 const mcqBank = [
-    // Phần 1
+    // --- Phần 1 ---
     {"id":1,"question_vi":"Một giải pháp từng bước cho một vấn đề được gọi là _______.","question_en":"A step-by-step solution to a problem is called _______.","answers_vi":[{"text":"phần cứng","correct":false},{"text":"một hệ điều hành","correct":false},{"text":"một ngôn ngữ máy tính","correct":false},{"text":"một thuật toán","correct":true}],"answers_en":[{"text":"hardware","correct":false},{"text":"an operating system","correct":false},{"text":"a computer language","correct":false},{"text":"an algorithm","correct":true}],"tip_vi":"Thuật toán (Algorithm) là một chuỗi các hướng dẫn hoặc quy tắc được xác định rõ ràng để giải quyết một vấn đề cụ thể.","tip_en":"An Algorithm is a sequence of well-defined instructions or rules to solve a specific problem."},
     {"id":2,"question_vi":"Mô hình _______ là cơ sở cho các máy tính ngày nay.","question_en":"The _______ model is the basis for today's computers.","answers_vi":[{"text":"Leibnitz","correct":false},{"text":"von Neumann","correct":true},{"text":"Pascal","correct":false},{"text":"Charles Babbage","correct":false}],"answers_en":[{"text":"Leibnitz","correct":false},{"text":"von Neumann","correct":true},{"text":"Pascal","correct":false},{"text":"Charles Babbage","correct":false}],"tip_vi":"Kiến trúc von Neumann mô tả một máy tính có thể lưu trữ chương trình và dữ liệu trong cùng một bộ nhớ, đây là nền tảng của hầu hết các máy tính hiện đại.","tip_en":"The von Neumann architecture describes a computer that can store both programs and data in the same memory, which is the foundation of most modern computers."},
     {"id":3,"question_vi":"Máy tính điện tử chuyên dụng đầu tiên được gọi là ___.","question_en":"The first electronic special-purpose computer was called ___.","answers_vi":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC (Atanasoff-Berry Computer)","correct":true},{"text":"ENIAC","correct":false}],"answers_en":[{"text":"Pascal","correct":false},{"text":"Pascaline","correct":false},{"text":"ABC (Atanasoff-Berry Computer)","correct":true},{"text":"ENIAC","correct":false}],"tip_vi":"Máy tính Atanasoff-Berry (ABC) được coi là máy tính điện tử kỹ thuật số tự động đầu tiên.","tip_en":"The Atanasoff-Berry Computer (ABC) is considered the first automatic electronic digital computer."},
@@ -262,18 +261,23 @@ const mcqBank = [
     {"id":8,"question_vi":"Máy vi tính Apple Macintosh II được giới thiệu ra thị trường khi nào?","question_en":"When was Apple Macintosh II microcomputer introduced in the market?","answers_vi":[{"text":"1964","correct":false},{"text":"1970","correct":false},{"text":"1986","correct":false},{"text":"1987","correct":true}],"answers_en":[{"text":"1964","correct":false},{"text":"1970","correct":false},{"text":"1986","correct":false},{"text":"1987","correct":true}],"tip_vi":"Macintosh II, ra mắt năm 1987, là một cột mốc quan trọng của Apple với khả năng hiển thị màu.","tip_en":"The Macintosh II, released in 1987, was a significant milestone for Apple with its color display capabilities."},
     {"id":9,"question_vi":"Tên gọi của máy tính ở quy mô phân tử là gì?","question_en":"What is the name given to the molecular-scale computer?","answers_vi":[{"text":"Supercomputer","correct":false},{"text":"Femtocomputer","correct":false},{"text":"Nanocomputer","correct":true},{"text":"Microcomputer","correct":false}],"answers_en":[{"text":"Supercomputer","correct":false},{"text":"Femtocomputer","correct":false},{"text":"Nanocomputer","correct":true},{"text":"Microcomputer","correct":false}],"tip_vi":"Công nghệ nano (Nanotechnology) liên quan đến việc chế tạo các thiết bị ở quy mô nano mét, bao gồm cả máy tính.","tip_en":"Nanotechnology deals with building devices at the nanometer scale, including computers."},
     {"id":10,"question_vi":"Con người được gọi là Homosapiens. Thiết bị nào được gọi là Silico sapiens?","question_en":"Human beings are referred to as Homosapiens. Which device is called Silico sapiens?","answers_vi":[{"text":"Monitor","correct":false},{"text":"Hardware","correct":false},{"text":"Robot","correct":false},{"text":"Computer","correct":true}],"answers_en":[{"text":"Monitor","correct":false},{"text":"Hardware","correct":false},{"text":"Robot","correct":false},{"text":"Computer","correct":true}],"tip_vi":"'Silico sapiens' (sinh vật thông minh dựa trên silicon) là một thuật ngữ ẩn dụ cho máy tính, vì chip của chúng được làm từ silicon.","tip_en":"'Silico sapiens' (silicon-based intelligent being) is a metaphorical term for computers, as their chips are made from silicon."},
-    {"id":11,"question_vi":"Lĩnh vực nào sau đây hiện không phải là một chủ đề trong khoa học máy tính?","question_en":"Which of the following is not currently a topic in computer science?","answers_vi":[{"text":"Speech recognition","correct":false},{"text":"Artificial intelligence","correct":false},{"text":"Thermodynamics","correct":true},{"text":"Multiprocessing","correct":false}],"answers_en":[{"text":"Speech recognition","correct":false},{"text":"Artificial intelligence","correct":false},{"text":"Thermodynamics","correct":true},{"text":"Multiprocessing","correct":false}],"tip_vi":"Nhiệt động lực học là một nhánh của vật lý, trong khi các lựa chọn khác là các lĩnh vực con của khoa học máy tính.","tip_en":"Thermodynamics is a branch of physics, while the other options are subfields of computer science."},
-    // Phần 2
+    {"id":11,"question_vi":"Lĩnh vực nào sau đây hiện không phải là một chủ đề trong khoa học máy tính?","question_en":"Which of the following is not currently a topic in computer science?","answers_vi":[{"text":"Nhận dạng giọng nói","correct":false},{"text":"Trí tuệ nhân tạo","correct":false},{"text":"Nhiệt động lực học","correct":true},{"text":"Đa xử lý","correct":false}],"answers_en":[{"text":"Speech recognition","correct":false},{"text":"Artificial intelligence","correct":false},{"text":"Thermodynamics","correct":true},{"text":"Multiprocessing","correct":false}],"tip_vi":"Nhiệt động lực học là một nhánh của vật lý, trong khi các lựa chọn khác là các lĩnh vực con của khoa học máy tính.","tip_en":"Thermodynamics is a branch of physics, while the other options are subfields of computer science."},
+    
+    // --- Phần 2 ---
     {"id":12,"question_vi":"Trong máy tính, hệ thống con _______ thực hiện các phép tính và toán tử logic.","question_en":"In a computer, the _______ subsystem performs calculations and logical operations.","answers_vi":[{"text":"ALU","correct":true},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":true},{"text":"input/output","correct":false},{"text":"memory","correct":false},{"text":"control unit","correct":false}],"tip_vi":"ALU (Arithmetic Logic Unit) là bộ phận của CPU chịu trách nhiệm thực hiện các phép toán số học và logic.","tip_en":"The ALU (Arithmetic Logic Unit) is the part of the CPU responsible for performing arithmetic and logical operations."},
     {"id":13,"question_vi":"Trong máy tính, hệ thống con _______ lưu trữ dữ liệu và chương trình.","question_en":"In a computer, the _______ subsystem stores data and programs.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":true},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":false},{"text":"memory","correct":true},{"text":"control unit","correct":false}],"tip_vi":"Bộ nhớ (Memory) là thành phần chịu trách nhiệm lưu trữ cả chỉ thị (chương trình) và dữ liệu để CPU có thể truy cập và xử lý.","tip_en":"Memory is the component responsible for storing both instructions (programs) and data so the CPU can access and process them."},
     {"id":14,"question_vi":"Trong máy tính, hệ thống con _______ chấp nhận dữ liệu và chương trình và gửi kết quả xử lý đến các thiết bị đầu ra.","question_en":"In a computer, the _______ subsystem accepts data and programs and sends processing results to output devices.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":true},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":false}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":true},{"text":"memory","correct":false},{"text":"control unit","correct":false}],"tip_vi":"Hệ thống con Nhập/Xuất (Input/Output) là cầu nối giữa máy tính và thế giới bên ngoài (người dùng, các thiết bị khác).","tip_en":"The Input/Output subsystem is the bridge between the computer and the outside world (users, other devices)."},
     {"id":15,"question_vi":"Trong máy tính, hệ thống con _______ đóng vai trò là người quản lý các hệ thống con khác.","question_en":"In a computer, the _______ subsystem serves as a manager of the other subsystems.","answers_vi":[{"text":"ALU","correct":false},{"text":"nhập/xuất","correct":false},{"text":"bộ nhớ","correct":false},{"text":"đơn vị điều khiển","correct":true}],"answers_en":[{"text":"ALU","correct":false},{"text":"input/output","correct":false},{"text":"memory","correct":false},{"text":"control unit","correct":true}],"tip_vi":"Đơn vị điều khiển (Control Unit) điều phối hoạt động của tất cả các bộ phận khác trong máy tính, giống như một người quản lý.","tip_en":"The Control Unit coordinates the activities of all other parts of the computer, like a manager."},
-    // Thêm các câu hỏi còn lại từ 16 đến 182 vào đây theo cùng cấu trúc
+    {"id":16,"question_vi":"Theo mô hình von Neumann, _______ được lưu trữ trong bộ nhớ.","question_en":"According to the von Neumann model, _______ are stored in memory.","answers_vi":[{"text":"chỉ dữ liệu","correct":false},{"text":"chỉ chương trình","correct":false},{"text":"dữ liệu và chương trình","correct":true},{"text":"không phải dữ liệu cũng không phải chương trình","correct":false}],"answers_en":[{"text":"only data","correct":false},{"text":"only programs","correct":false},{"text":"data and programs","correct":true},{"text":"neither data nor programs","correct":false}],"tip_vi":"Kiến trúc von Neumann đặc trưng bởi việc lưu trữ cả chương trình (chỉ thị) và dữ liệu trong cùng một không gian bộ nhớ.","tip_en":"The von Neumann architecture is characterized by storing both programs (instructions) and data in the same memory space."},
+    {"id":17,"question_vi":"_______ là một hệ thống con của máy tính thực hiện các hoạt động trên dữ liệu.","question_en":"The _______ is a computer subsystem that performs operations on data.","answers_vi":[{"text":"Bộ nhớ","correct":false},{"text":"CPU","correct":true},{"text":"Hệ thống con I/O","correct":false},{"text":"Đơn vị điều khiển","correct":false}],"answers_en":[{"text":"Memory","correct":false},{"text":"CPU","correct":true},{"text":"I/O subsystem","correct":false},{"text":"Control Unit","correct":false}],"tip_vi":"CPU (Central Processing Unit) là bộ não của máy tính, chịu trách nhiệm thực hiện hầu hết các xử lý.","tip_en":"The CPU (Central Processing Unit) is the brain of the computer, responsible for most of the processing."},
+    {"id":18,"question_vi":"_______ là một vị trí lưu trữ độc lập giữ dữ liệu tạm thời.","question_en":"_______ is a stand-alone storage location that holds data temporarily.","answers_vi":[{"text":"Một ALU","correct":false},{"text":"Một thanh ghi","correct":true},{"text":"Một đơn vị điều khiển","correct":false},{"text":"Một bus","correct":false}],"answers_en":[{"text":"An ALU","correct":false},{"text":"A register","correct":true},{"text":"A control unit","correct":false},{"text":"A bus","correct":false}],"tip_vi":"Thanh ghi (Register) là các vị trí lưu trữ nhỏ, tốc độ cao bên trong CPU được sử dụng để lưu giữ tạm thời dữ liệu đang được xử lý.","tip_en":"Registers are small, high-speed storage locations within the CPU used to temporarily hold data being processed."},
+    {"id":19,"question_vi":"Một thanh ghi trong CPU có thể chứa _______.","question_en":"A register in a CPU can hold _______.","answers_vi":[{"text":"chỉ dữ liệu","correct":false},{"text":"chỉ chỉ thị","correct":false},{"text":"chỉ giá trị của bộ đếm chương trình","correct":false},{"text":"dữ liệu, chỉ thị, hoặc giá trị của bộ đếm chương trình","correct":true}],"answers_en":[{"text":"only data","correct":false},{"text":"only instructions","correct":false},{"text":"only program counter values","correct":false},{"text":"data, instructions, or program counter values","correct":true}],"tip_vi":"Các thanh ghi có mục đích khác nhau; một số giữ dữ liệu, một số giữ địa chỉ của chỉ thị tiếp theo (bộ đếm chương trình), và một số giữ chính chỉ thị đang được thực thi.","tip_en":"Registers have different purposes; some hold data, some hold the address of the next instruction (program counter), and some hold the current instruction being executed."},
+    {"id":20,"question_vi":"Một đơn vị điều khiển với năm dây có thể xác định tối đa _______ hoạt động.","question_en":"A control unit with five wires can define up to _______ operations.","answers_vi":[{"text":"5","correct":false},{"text":"10","correct":false},{"text":"16","correct":false},{"text":"32","correct":true}],"answers_en":[{"text":"5","correct":false},{"text":"10","correct":false},{"text":"16","correct":false},{"text":"32","correct":true}],"tip_vi":"Với N dây (bit), bạn có thể biểu diễn 2^N trạng thái hoặc hoạt động khác nhau. 2^5 = 32.","tip_en":"With N wires (bits), you can represent 2^N different states or operations. 2^5 = 32."},
+    // --- Thêm các câu hỏi còn lại ---
     // ...
     {"id":182,"question_vi":"Cái nào sau đây đại diện cho một tập hợp các mục dữ liệu chia sẻ một mối quan hệ cụ thể?","question_en":"Which of the following represents a set of data items that share a specific relationship?","answers_vi":[{"text":"ADT","correct":false},{"text":"Cấu trúc dữ liệu","correct":true},{"text":"Ngôn ngữ lập trình","correct":false},{"text":"Phần tử dữ liệu","correct":false}],"answers_en":[{"text":"ADT","correct":false},{"text":"Data structure","correct":true},{"text":"Programming language","correct":false},{"text":"Data element","correct":false}],"tip_vi":"Cấu trúc dữ liệu (Data Structure) là cách tổ chức, quản lý và lưu trữ dữ liệu để có thể truy cập và sửa đổi một cách hiệu quả.","tip_en":"A Data Structure is a way of organizing, managing, and storing data to enable efficient access and modification."}
 ];
 // --- END OF QUESTION BANK ---
-
 
 // State variables
 let currentLanguage = 'vi';
@@ -447,7 +451,7 @@ function renderCurrentQuestion(isLanguageSwitch = false) {
     answers.forEach(answer => {
         const button = document.createElement('button');
         button.className = 'answer-btn';
-        button.innerHTML = answer.text;
+        button.innerHTML = `${answer.text}<i class="icon"></i>`;
         button.onclick = () => selectAnswer(button, answer.correct, answer.text);
         uiElements.answersContainerDiv.appendChild(button);
     });
@@ -466,14 +470,26 @@ function selectAnswer(selectedButton, isCorrect, selectedText) {
 
 function applyAnswerState(answered) {
     const { text, isCorrect } = answered;
-    const correctText = quizQuestions[currentQuestionIndex][currentLanguage === 'vi' ? 'answers_vi' : 'answers_en'].find(a => a.correct).text;
+    const currentAnswers = quizQuestions[currentQuestionIndex][currentLanguage === 'vi' ? 'answers_vi' : 'answers_en'];
+    const correctText = currentAnswers.find(a => a.correct).text;
     
     document.querySelectorAll('.answer-btn').forEach(btn => {
         btn.disabled = true;
-        if (btn.innerHTML === text) {
-            btn.classList.add(isCorrect ? 'correct' : 'incorrect');
-        } else if (btn.innerHTML === correctText) {
+        const btnText = btn.textContent;
+        const icon = btn.querySelector('.icon');
+
+        if (btnText === correctText) {
             btn.classList.add('correct');
+            icon.textContent = '✔️';
+        }
+
+        if (btnText === text) { // This is the user's choice
+            if (!isCorrect) {
+                btn.classList.add('incorrect');
+                icon.textContent = '❌';
+            } else {
+                 icon.textContent = '✔️'; // Already handled by correct check but good for clarity
+            }
         }
     });
 
