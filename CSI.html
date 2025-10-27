@@ -460,29 +460,39 @@ function renderCurrentQuestion(isLanguageSwitch = false) {
 }
 
 function selectAnswer(selectedButton, isCorrect, selectedText) {
-    userAnswers[currentQuestionIndex] = { text: selectedText, isCorrect: isCorrect };
+    const currentAnswersVi = quizQuestions[currentQuestionIndex].answers_vi;
+    const currentAnswersEn = quizQuestions[currentQuestionIndex].answers_en;
+    
+    let originalIndex = -1;
+    if(currentLanguage === 'vi') {
+        originalIndex = currentAnswersVi.findIndex(a => a.text === selectedText);
+    } else {
+        originalIndex = currentAnswersEn.findIndex(a => a.text === selectedText);
+    }
+    
+    userAnswers[currentQuestionIndex] = { originalIndex: originalIndex, isCorrect: isCorrect };
+
     applyAnswerState(userAnswers[currentQuestionIndex]);
     if (isCorrect) score++;
 }
 
 function applyAnswerState(answered) {
-    const { text, isCorrect } = answered;
+    const { originalIndex, isCorrect } = answered;
     const currentAnswers = quizQuestions[currentQuestionIndex][currentLanguage === 'vi' ? 'answers_vi' : 'answers_en'];
+    const userChoiceText = currentAnswers[originalIndex].text;
     const correctText = currentAnswers.find(a => a.correct).text;
     
     document.querySelectorAll('.answer-btn').forEach(btn => {
         btn.disabled = true;
-        const btnText = btn.textContent; // Use textContent to get clean text without icon
+        const btnText = btn.textContent;
         const icon = btn.querySelector('.icon');
 
-        // Always mark the correct answer
         if (btnText === correctText) {
             btn.classList.add('correct');
             icon.textContent = '✔️';
         }
         
-        // Mark the user's choice
-        if (btnText === text) {
+        if (btnText === userChoiceText) {
             if (!isCorrect) {
                 btn.classList.add('incorrect');
                 icon.textContent = '❌';
@@ -536,7 +546,8 @@ function showResults() {
         if (userAnswer) {
             li.classList.add(userAnswer.isCorrect ? 'result-correct' : 'result-incorrect');
             const yourAnswerLabel = currentLanguage === 'vi' ? 'Bạn chọn' : 'You chose';
-            resultHTML += `<div class="result-answer">${yourAnswerLabel}: ${userAnswer.text}</div>`;
+            const userChoiceText = question[answersLang][userAnswer.originalIndex].text;
+            resultHTML += `<div class="result-answer">${yourAnswerLabel}: ${userChoiceText}</div>`;
             if (!userAnswer.isCorrect) {
                 const correctLabel = currentLanguage === 'vi' ? 'Đáp án đúng' : 'Correct answer';
                 resultHTML += `<div class="result-answer">${correctLabel}: ${correctAnswerText}</div>`;
